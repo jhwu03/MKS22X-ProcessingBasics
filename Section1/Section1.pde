@@ -1,7 +1,6 @@
 int MAX_VALUE = 100;
 int MIN_VALUE = -100;
 Visualizer v;
-int[] heights = new int[10];
 
 /*You are simulating a visualizer of multiple values
  You need to create a display method first. 
@@ -20,8 +19,6 @@ class Visualizer {
       values[i] = random(-99, 99);
       speeds[i] = random(2);
     }
-    for (int i=0;i <heights.length; i++){
-      heights[i] = random(-100,101);
   }
 
   void display() {
@@ -43,13 +40,16 @@ class Visualizer {
 
     //???WRITE THIS METHOD FIRST!!!
     //THESE ARE WRONG: They just illustrate how they could look
-    //fill(255, 0, 0);
-    for (int i = 0 ; i<heights.length; i++){
-      if(y+ heights[i] <
+      for (int i  = 0; i < 10; i++) {
+      
+      if (values[i] <= 100 && values[i] > 0){
+        fill(255, 0, 0);
+      }
+      else if (values[i] <= 0 && values[i] > -100) {
+        fill(0, 255, 0); 
+      }
+      rect(x + 40 * i, y + 100, 40, values[i]);
     }
-    //rect(x, y+100, 40, 50);
-    //fill(0, 255, 0);
-    //rect(x+40, y+50, 40, 50);
 
 
     //Width of the visualizer is 400!
@@ -63,6 +63,12 @@ class Visualizer {
       //??? keep them values between max/min value so they stay in the box.
 
       //??? reverse the speeds so the bar oscillates up/down when it reaches max/min
+      if(values[i] >= 100){
+         speeds[i] = speeds[i] * -1;
+      }
+      if(values[i] <= -100){
+        speeds[i] = speeds[i] * -1;
+      }
 
       
     }
@@ -76,5 +82,5 @@ void setup() {
 void draw() {
   background(255);
   v.display();
-  //v.update();
+  v.update();
 }
